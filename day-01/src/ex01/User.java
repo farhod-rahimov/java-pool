@@ -1,7 +1,6 @@
-package ex00;
+package ex01;
 
 public class User {
-    private static long lastId;
     private long        id;
     private String      name;
     private int         balance = 0;
@@ -13,7 +12,7 @@ public class User {
             this.balance = balance;
         }
         this.name = name;
-        this.id = ++this.lastId;
+        this.id = UserIdsGenerator.getInstance().generateId();
     }
 
     public long getId() {

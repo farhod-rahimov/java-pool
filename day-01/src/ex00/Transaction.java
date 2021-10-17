@@ -18,10 +18,6 @@ public class Transaction {
         this.transferAmount = 0;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
     public UUID getId() {
         return this.id;
     }
