@@ -7,4 +7,7 @@ root-of-repo
 
 -----------------------------------
 
-DELETE package ex0* FROM every Program.java file of every exercise
+DELETE:
+- package ex0* FROM every Program.java file of every exercise
+- .idea, out, src, day-00.iml, README.txt
+
