@@ -42,15 +42,17 @@ class Program {
         User alex = new User("Alex", 1000);
         User john = new User("John", 2000);
 
+        System.out.println("Alex has " + alex.getBalance() + "$");
+        System.out.println("John has " + john.getBalance() + "$");
 
-        System.out.println("\nAlex sends John 500$");
+        System.out.println("\n1) Alex sends John 500$");
         Transaction debitTransaction1 = createDebitTransaction(500, alex, john);
         Transaction creditTransaction1 = createCreditTransaction(
                 debitTransaction1.getId(),500, alex, john);
         alex.getTransactionsList().addTransaction(debitTransaction1);
         john.getTransactionsList().addTransaction(creditTransaction1);
 
-        System.out.println("Alex sends John 300$");
+        System.out.println("2) Alex sends John 300$");
         Transaction debitTransaction2 = createDebitTransaction(300, alex, john);
         Transaction creditTransaction2 = createCreditTransaction(
                 debitTransaction2.getId(),300, alex, john);
