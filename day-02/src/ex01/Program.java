@@ -31,7 +31,8 @@ class Program {
             calculateSimilarity(vector1, vector2);
             createDictFile(dictionary);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
+            System.exit(1);
         }
     }
 
@@ -61,18 +62,18 @@ class Program {
             fillDictionary(dictionary, wordsOfFile2);
 
             if (wordsOfFile1.size() == wordsOfFile2.size() && wordsOfFile1.size() == 0) {
-                System.out.println("Similarity = 1");
+                System.out.println("Similarity = 1,0000");
                 createDictFile(dictionary);
                 System.exit(0);
             } else if (wordsOfFile1.size() == 0 || wordsOfFile2.size() == 0) {
-                System.out.println("Similarity = 0");
+                System.out.println("Similarity = 0,0000");
                 createDictFile(dictionary);
                 System.exit(0);
             }
             bufferedReader1.reset();
             bufferedReader2.reset();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
             System.exit(1);
         }
         return dictionary;
@@ -130,7 +131,7 @@ class Program {
             tmp2 += vector2[i] * vector2[i];
         }
         denominator = Math.sqrt(tmp1) * Math.sqrt(tmp2);
-        System.out.printf("%.3f\n", numerator / denominator);
+        System.out.printf("%.4f\n", numerator / denominator);
     }
 
     private static Integer[] getEmptyVector(int size) {
