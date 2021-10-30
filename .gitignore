@@ -1,6 +1,7 @@
 .idea
 out
 day-0*.iml
+ex*.iml
 External Libraries
 .DS_Store
 /Users/farhod/new-java-pool/day-02/dictionary.txt
@@ -8,3 +9,4 @@ External Libraries
 /Users/farhod/new-java-pool/day-02/file2
 /Users/farhod/new-java-pool/day-03/files_urls.txt
 downloaded_*
+target
