@@ -19,6 +19,39 @@ public class MessagesRepositoryJdbcImpl implements MessagesRepository {
     }
 
     @Override
+    public void update(Message message) {
+        Connection connection;
+        PreparedStatement preparedStatement;
+
+        if (message == null) {
+            return ;
+        }
+        String statement = "UPDATE messages SET " +
+                "author = '" + message.getAuthor().getId() + "', " +
+                "room = '" + message.getRoom().getId() + "', " +
+                "text = '" + message.getText() + "', ";
+
+        if (message.getDate() == null) {
+            statement += "date = NULL ";
+        } else {
+            statement += "date = '" + message.getDate() + "' ";
+        }
+        statement += "WHERE id = " + message.getId();
+
+        try {
+            connection = this.dataSource.getConnection();
+            checkIfSuchIDExistsInTable(message.getAuthor().getId(), "users", connection);
+            checkIfSuchIDExistsInTable(message.getRoom().getId(), "chat_rooms", connection);
+            preparedStatement = connection.prepareStatement(statement);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public void save(Message message) {
         Connection connection;
         PreparedStatement preparedStatement;
@@ -62,7 +95,7 @@ public class MessagesRepositoryJdbcImpl implements MessagesRepository {
         if (resultSet.next() == false) {
             resultSet.close();
             preparedStatement.close();
-            throw new edu.school21.chat.repositories.NotSavedSubEntityException(
+            throw new NotSavedSubEntityException(
                     "Id = " + id + " in table " + tableName + " doesn't exist"
             );
         }
