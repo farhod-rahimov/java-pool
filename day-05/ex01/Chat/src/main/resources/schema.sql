@@ -1,4 +1,4 @@
-create database ex01;
+create database ex03;
 
 -- \c ex01;
 -- first create database ex01 and then connect to it
@@ -17,8 +17,8 @@ CREATE TABLE messages (
     id BIGSERIAL PRIMARY KEY NOT NULL,
     author BIGSERIAL REFERENCES users(id),
     room BIGSERIAL REFERENCES chat_rooms(id),
-    text text NOT NULL,
-    date timestamp NOT NULL);
+    text text NULL,
+    date timestamp NULL);
 
 CREATE TABLE chat_rooms_of_users (
     user_id BIGSERIAL REFERENCES users(id) NOT NULL,
