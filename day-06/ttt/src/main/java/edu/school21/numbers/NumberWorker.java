@@ -38,7 +38,7 @@ public class NumberWorker {
 
         number = Math.abs(number);
 
-        if (number <= 10) {
+        if (number < 10) {
             return number;
         }
 
